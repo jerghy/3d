@@ -1,0 +1,28 @@
+name: Build Project
+
+# 触发工作流的事件，这里设置为在push到main分支时触发
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-job:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Install dependencies
+      run: yarn install
+
+    - name: Build project
+      run: yarn build
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: build-artifacts
+        path: |
+          dist/* # 这里假设构建产物在dist目录下
