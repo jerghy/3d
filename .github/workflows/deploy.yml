@@ -13,6 +13,10 @@ jobs:
     steps:
     - name: Checkout 🛎️
       uses: actions/checkout@v2
+      
+    - name: Update Browserslist DB
+      run: |
+        npx browserslist@latest --update-db
 
     - name: Install Dependencies 🔧
       run: |
